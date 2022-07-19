@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+    crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="col-8 offset-2 p-2">
+                <h3 class="text-center">Todo List</h3>
+                <div class="d-flex justify-content-start mb-4">
+                    <input class="form-control" @keydown.enter="addToDo"></input>
+                </div>
+                <ul class="list-group">
+                   <li v-for="todo in todoList" :key="todo.id" class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <input type="checkbox" class="form-check-input" v-model="todo.completed" :id="`completed_checkbox_${todo.id}`">
+                        <label for="" class="form-check-label ms-2" :for="`completed_checkbox_${todo.id}`">{{ todo.text }}</label>
+                    </div>
+
+                    <button class="btn btn-danger btn-sm" @click="removeItem(todo)">Sil</button>
+                   </li> 
+                </ul>
+                <div v-if="todoList.length == 0" class="alert alert-warning">Henüz eklenmiş bir todo item yok</div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
